@@ -12,8 +12,5 @@
   "files": [
     "src/main.server.ts",
     "src/server.ts"
-  ],
-  "angularCompilerOptions": {
-    "entryModule": "./src/app/app.server.module#AppServerModule"
-  }
+  ]
 }

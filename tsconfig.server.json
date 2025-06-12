@@ -4,13 +4,13 @@
     "outDir": "./out-tsc/server",
     "target": "ES2022",
     "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "types": [
-      "node"
-    ]
+    "moduleResolution": "NodeNext"
   },
   "files": [
     "src/main.server.ts",
     "src/server.ts"
+  ],
+  "include": [
+    "src/**/*.server.d.ts"
   ]
 }

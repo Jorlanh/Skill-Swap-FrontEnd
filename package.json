@@ -1,6 +1,7 @@
 {
   "name": "skill-swap-frontend",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "node dist/skill-swap-frontend/server/main.js",

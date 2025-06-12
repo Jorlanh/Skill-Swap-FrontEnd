@@ -1,0 +1,20 @@
+<!-- O container do footer usa a tag semântica <footer> -->
+<footer class="site-footer">
+  <div class="footer-content">
+    
+    <!-- Linha com informações de copyright e desenvolvedor -->
+    <div class="footer-row">
+      <span>&copy; {{ currentYear }} SkillSwap. Todos os direitos reservados.</span>
+      <span>Desenvolvido por Grupo JGFA</span>
+    </div>
+
+    <!-- Linha com os links de navegação -->
+    <nav class="footer-row">
+      <!-- Usamos routerLink para navegação interna no Angular -->
+      <a routerLink="/privacy-policy">Políticas de Privacidade</a>
+      <span class="separator">|</span>
+      <a routerLink="/terms-of-use">Termos de Uso</a>
+    </nav>
+
+  </div>
+</footer>

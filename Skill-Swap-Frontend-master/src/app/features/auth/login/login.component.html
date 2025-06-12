@@ -1,0 +1,47 @@
+<div class="centralizar">
+  <div class="login-container">
+    <h2>Já possui uma conta?</h2>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+
+      <div class="form-group">
+        <label for="usernameOrEmail">Email / usuário</label>
+        <input
+          type="email"
+          id="usernameOrEmail"
+          name="usernameOrEmail"
+          placeholder=""
+          [(ngModel)]="username" required >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder=""
+          [(ngModel)]="password" required >
+      </div>
+
+      <a href="#">Esqueceu a senha?</a>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" [disabled]="!loginForm.form.valid">Entrar</button>
+
+    </form>
+
+    <button class="google-login">
+      <img src="https://agenciapnz.com/wp-content/uploads/Logo-Google-G.png" alt="Google Logo">
+      Entrar com o Google
+    </button>
+
+    <a routerLink="/cadastro" class="link-criar-conta">
+  Não tem uma conta? Crie uma agora!
+</a>
+
+  </div>
+</div>

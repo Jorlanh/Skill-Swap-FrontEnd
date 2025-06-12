@@ -1,0 +1,166 @@
+/* Importando uma fonte para um visual mais limpo */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Variáveis de CSS para manter a consistência */
+:host {
+  --background-color: #f0f2f5;
+  --panel-background: #e2e8f0; /* Um cinza-azulado claro para os cards */
+  --card-hover-background: #659bf1;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --button-primary-bg: #4f46e5;
+  --card-primary-bg: #3b82f6;
+  --button-secondary-bg: #e2e8f0;
+  --button-enter-bg: #f8fafc;
+  --font-family: 'Inter', sans-serif;
+}
+
+/* Container geral da página */
+.page-container {
+  font-family: var(--font-family);
+  background-color: var(--panel-background);
+  border-radius: 24px;
+  padding: 2rem 3rem;
+  margin: 2rem;
+  border: 1px solid #d1d5db;
+}
+
+/* Estilos do cabeçalho */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.title-container {
+  text-align: center;
+}
+
+.title-container h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.title-container p {
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.back-button, .explore-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f1f5f9;
+  border: 1px solid #d1d5db;
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: 0.7rem 1.2rem;
+  border-radius: 9999px; /* Botão totalmente arredondado */
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.back-button:hover, .explore-button:hover {
+  background-color: #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.explore-button span {
+  background-color: var(--text-primary);
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Grade de comunidades */
+.communities-grid {
+  display: grid;
+  /* Cria 4 colunas em telas grandes, e se ajusta para telas menores */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Estilo de cada card */
+.community-card {
+  background-color: var(--card-primary-bg);
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.community-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.07);
+  background-color: var(--card-hover-background);
+}
+
+.card-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+  word-wrap: break-word; /* Garante que títulos longos quebrem a linha */
+}
+
+/* Grupo de avatares sobrepostos */
+.avatar-group {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  padding-left: 20px; /* Espaço para o primeiro avatar não ser cortado */
+}
+
+.member-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid var(--panel-background);
+  /* A mágica da sobreposição */
+  margin-left: -20px; 
+  object-fit: cover;
+  background-color: #e2e8f0;
+  transition: transform 0.2s;
+}
+
+.community-card:hover .member-avatar {
+  transform: scale(1.05);
+  border-color: var(--card-hover-background);
+}
+
+.member-count {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem 0;
+}
+
+.enter-button {
+  background-color: var(--button-enter-bg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 0.75rem 0; /* Padding vertical, 0 horizontal para ocupar toda a largura */
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.enter-button:hover {
+  background-color: var(--text-primary);
+  color: white;
+  border-color: var(--text-primary);
+}

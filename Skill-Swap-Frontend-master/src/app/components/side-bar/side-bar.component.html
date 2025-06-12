@@ -1,0 +1,18 @@
+<!-- side-bar.component.html -->
+<nav class="sidebar-nav">
+  <!-- 
+    A diretiva *ngFor cria um link de navegação para cada item
+    no array 'menuItems' do nosso arquivo .ts
+  -->
+  <a 
+    *ngFor="let item of menuItems" 
+    [routerLink]="item.route" 
+    class="nav-link"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}">
+    
+    <span class="icon">{{ item.icon }}</span>
+    <span class="label">{{ item.label }}</span>
+    <span *ngIf="item.notificationCount" class="notification-badge">{{ item.notificationCount }}</span>
+  </a>
+</nav>

@@ -1,0 +1,272 @@
+/* home.component.css (Versão Melhorada) */
+
+/* Importando uma fonte para um visual mais profissional */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Variáveis de CSS para manter a consistência do design */
+:host {
+  font-family: 'Inter', sans-serif;
+  --bg-page: #f0f2f5;
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-link: #3b82f6;
+}
+
+/* Container principal da página com layout de 3 colunas */
+.page-container {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 320px;
+  gap: 1.5rem;
+  background-color: var(--bg-page);
+  padding: 1.5rem;
+  max-width: 1800px; /* Limita a largura máxima para telas muito grandes */
+  margin: 0 auto;
+}
+
+/* Estilo do conteúdo central */
+.main-content {
+  background-color: var(--bg-card);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  min-width: 0; /* Correção para flexbox/grid não expandir indevidamente */
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1.5rem 0;
+}
+
+/* --- SEÇÃO "EM ALTA" - CORREÇÃO DO OVERFLOW --- */
+.trending-scroll-wrapper {
+  overflow: hidden; /* Esconde o overflow do container pai */
+  margin: 0 -0.5rem; /* Compensa o padding dos cards */
+}
+.trending-cards-container {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto; /* Mantém a rolagem horizontal */
+  padding: 0.5rem; /* Espaço para a sombra/borda não ser cortada */
+  /* Truque para esconder a barra de rolagem visualmente */
+  padding-bottom: 20px; 
+  margin-bottom: -20px; 
+  -ms-overflow-style: none;  /* IE e Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.trending-cards-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari e Opera */
+}
+
+
+.trending-card {
+  position: relative;
+  flex: 0 0 180px; /* Tamanho fixo dos cards */
+  height: 250px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.trending-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+.trending-card .card-background { /* Renomeado para clareza */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 70%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.card-info h3, .card-info p {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+.card-info h3 { font-size: 1.1rem; font-weight: 600; }
+.card-info p { font-size: 0.8rem; opacity: 0.9; }
+
+/* --- Controles de Ordenação --- */
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  margin: 1.5rem 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.sort-controls span { font-weight: 500; color: var(--text-secondary); }
+.sort-controls select {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem;
+  background-color: transparent;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- Feed de Posts (Estilo Melhorado) --- */
+.feed-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1px; /* Cria o efeito de linha divisória */
+  background-color: var(--border-color); /* A cor da linha */
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.feed-post {
+  background-color: var(--bg-card);
+  padding: 1.5rem;
+}
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.user-avatar { width: 48px; height: 48px; border-radius: 50%; }
+.user-info { flex-grow: 1; }
+.user-info strong { display: block; color: var(--text-primary); font-weight: 600; }
+.user-info small { color: var(--text-secondary); font-size: 0.8rem; }
+.options-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-weight: bold;
+  margin-left: auto; /* Empurra o botão para a direita */
+  padding: 0.5rem;
+}
+.post-content p { color: #334155; line-height: 1.6; margin-bottom: 1rem; }
+.post-image { width: 100%; max-height: 500px; object-fit: cover; border-radius: 8px; }
+.post-actions {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+.post-actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.post-actions button .icon { font-size: 1.1rem; }
+
+/* --- Sidebar da Direita (Estilo Melhorado) --- */
+.right-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar-widget {
+  background-color: var(--bg-card);
+  text-decoration: none;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.sidebar-widget h4 {
+  margin: 0 0 1.25rem 0;
+  color: var(--text-primary);
+  font-size: 1rem; /* 16px */
+  font-weight: 600;
+}
+
+/* Estilo para a lista de comunidades */
+.community-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Aumenta o espaçamento entre as comunidades */
+}
+
+.community-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.community-avatar {
+  width: 40px; /* Avatar um pouco maior */
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.community-info strong {
+  display: block;
+  font-size: 0.9rem; /* 14.4px */
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.community-info span {
+  font-size: 0.8rem; /* 12.8px */
+  color: var(--text-secondary);
+}
+
+/* Estilo para o link "Mostrar mais" */
+.widget-more-link {
+  display: block;
+  margin-top: 1.5rem;
+  color: var(--text-link);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: text-decoration 0.2s;
+}
+
+.widget-more-link:hover {
+  text-decoration: underline;
+}
+
+/* Estilo para as listas de links (Assuntos, Recursos) */
+.link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem; /* Espaçamento entre os links */
+  text-decoration: none;
+}
+
+.link-list a {
+  text-decoration: none;
+  color: var(--text-secondary); /* Cor mais sutil para os links */
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.link-list a:hover {
+  color: var(--text-link); /* Muda para a cor de destaque no hover */
+}

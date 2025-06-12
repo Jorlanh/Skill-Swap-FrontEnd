@@ -1,0 +1,48 @@
+<!-- Container geral da página de comunidades -->
+<div class="page-container">
+  
+  <!-- Cabeçalho da página -->
+  <header class="page-header">
+    <button class="back-button" (click)="goBack()">
+      <span>&#x276E;</span> Voltar
+    </button>
+    <div class="title-container">
+      <h1>Comunidade</h1>
+      <p>Venha fazer parte de alguma também! :)</p>
+    </div>
+    <button class="explore-button" (click)="exploreMore()">
+      Explorar mais <span>&#x2B;</span>
+    </button>
+  </header>
+
+  <!-- Grade que exibirá os cards das comunidades -->
+  <main class="communities-grid">
+    <!-- 
+      A diretiva *ngFor irá criar um 'community-card' para cada
+      item no array 'communities' do nosso arquivo .ts
+    -->
+    <div *ngFor="let community of communities" class="community-card">
+      
+      <div class="card-content">
+        <h2>{{ community.name }}</h2>
+        
+        <!-- Container para os avatares sobrepostos -->
+        <div class="avatar-group">
+          <!-- Usamos placehold.co para gerar avatares temporários -->
+          <img *ngFor="let avatarId of community.memberAvatars; let i = index" 
+               [src]="'https://placehold.co/50x50/FFF/333?text=' + avatarId" 
+               [alt]="'Membro ' + (i + 1)" 
+               class="member-avatar">
+        </div>
+
+        <p class="member-count">{{ community.memberCount }} Membros</p>
+      </div>
+      
+      <button class="enter-button" (click)="enterCommunity(community)">
+        Entrar
+      </button>
+
+    </div>
+  </main>
+
+</div>

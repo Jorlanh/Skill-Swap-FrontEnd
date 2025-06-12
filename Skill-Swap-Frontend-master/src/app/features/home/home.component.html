@@ -1,0 +1,88 @@
+<div class="page-container">
+  
+  <!-- Coluna da Esquerda (seu componente de sidebar) -->
+  <app-sidebar class="left-sidebar"></app-sidebar>
+
+  <!-- Coluna Central (Conteúdo Principal) -->
+  <main class="main-content">
+    
+    <!-- Seção Em Alta -->
+    <section class="trending-section">
+      <h2 class="section-title">Em alta</h2>
+      <div class="trending-cards-container">
+        <!-- Cards da seção "Em Alta" -->
+        <div class="trending-card" *ngFor="let item of trendingItems">
+          <img [src]="item.imageUrl" [alt]="item.title">
+          <div class="card-overlay">
+            <div class="card-info">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.subtitle }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Controles de Ordenação -->
+    <div class="sort-controls">
+      <span>Ordenar por</span>
+      <select>
+        <option value="relevance">Mais Relevantes</option>
+        <option value="newest">Mais Recentes</option>
+      </select>
+    </div>
+
+    <!-- Feed de Posts -->
+    <section class="feed-section">
+      <!-- Loop para cada post no feed -->
+      <div class="feed-post" *ngFor="let post of feedItems">
+        <div class="post-header">
+          <img [src]="post.user.avatarUrl" [alt]="post.user.name" class="user-avatar">
+          <div class="user-info">
+            <strong>{{ post.user.name }}</strong>
+            <small>{{ post.date | date:'short' }}</small>
+          </div>
+          <button class="options-button">Ver mais</button>
+        </div>
+        <div class="post-content">
+          <p>{{ post.postText }}</p>
+          <img *ngIf="post.postImageUrl" [src]="post.postImageUrl" alt="Imagem do post" class="post-image">
+        </div>
+        <div class="post-actions">
+          <button><span class="icon">&#x1F4AC;</span> {{ post.commentCount }}</button>
+          <button><span class="icon">&#x2764;&#xFE0F;</span> {{ post.likeCount }}</button>
+          <button><span class="icon">&#x1F504;</span> {{ post.shareCount }}</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Coluna da Direita (Assuntos, Recursos, etc.) -->
+  <aside class="right-sidebar">
+    <div class="sidebar-widget">
+      <h4>Comunidades para você</h4>
+      <!-- Conteúdo das comunidades -->
+    </div>
+    <div class="sidebar-widget">
+      <h4>Assuntos</h4>
+      <ul>
+        <li><a href="#">Cultura e Lazer</a></li>
+        <li><a href="#">Jogos</a></li>
+        <li><a href="#">Séries de TV</a></li>
+        <li><a href="#">Arte digital</a></li>
+        <!-- ... mais itens -->
+      </ul>
+    </div>
+    <div class="sidebar-widget">
+      <h4>Recursos</h4>
+      <ul>
+        <li><a href="#">Sobre o SkillSwap</a></li>
+        <li><a href="#">Acessibilidade</a></li>
+        <li><a href="#">Ajuda</a></li>
+        <!-- ... mais itens -->
+      </ul>
+    </div>
+  </aside>
+
+</div>

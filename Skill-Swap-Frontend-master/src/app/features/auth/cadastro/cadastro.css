@@ -1,0 +1,161 @@
+body {
+  margin: 0;
+  font-weight: 300;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.centralizar {
+  display: flex;
+  justify-content: center; /* Centraliza na horizontal */
+  align-items: center;   /* Centraliza na vertical */
+  width: 100%;
+  min-height: 1vh;       /* A parte mais importante! */
+
+}.cadastro-container {
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  min-height: 300px;
+  max-height: 3000px;
+  background-color:#E4E4E4; /* Cor de fundo branca */
+  font-weight: 300; /* Peso da fonte padrão */
+  padding: 70px; /* Adicionado um padding geral para telas menores */
+border-radius: 50px;
+}
+
+/* Estilos para o card do formulário */
+.form-card {
+  width: 100%;
+  max-width: 380px; /* Largura máxima para telas maiores */
+  background-color: #E4E4E4; /* Cor de fundo do card */
+  border-radius: 20px; /* Cantos arredondados */
+  padding: 35px; /* Preenchimento interno */
+  box-sizing: border-box;
+  text-align: center;
+  /* Sombra para dar o efeito de profundidade da imagem */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para o título do formulário */
+h2 {
+  margin: 0 0 30px 0;
+  font-size: 28px;
+  font-weight: 400; /* Um pouco mais de peso para o título */
+  color: #333; /* Cor do texto do título */
+}
+
+/* Estilos para cada grupo de formulário (label + input) */
+.form-group {
+  margin-bottom: 15px; /* Espaçamento entre os grupos */
+  text-align: left; /* Alinha o texto à esquerda */
+}
+
+/* Estilos para os rótulos (labels) */
+label {
+  display: block; /* Ocupa sua própria linha */
+  font-size: 14px;
+  margin-bottom: 5px; /* Espaçamento entre label e input */
+  color: #333; /* Cor do texto do label */
+}
+
+/* Estilos para todos os inputs */
+input {
+  width: 100%;
+  padding: 12px;
+  background-color: #C5C5C5; /* Cor de fundo do input */
+  border: none;
+  border-radius: 15px; /* Cantos arredondados do input */
+  font-size: 14px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  outline: none; /* Remove o contorno padrão ao focar */
+  transition: all 0.2s ease-in-out; /* Transição suave para o foco */
+}
+
+/* Estilo de foco para os inputs */
+input:focus {
+  box-shadow: 0 0 0 2px rgba(169, 169, 169, 0.5); /* Sombra suave ao focar */
+}
+
+/* Remover setas de inputs tipo number (compatibilidade) */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Estilos para o grupo de input do telefone (+55 | input) */
+.phone-input-group {
+  display: flex;
+  align-items: center;
+  background-color: #C5C5C5; /* Cor de fundo do grupo */
+  border-radius: 15px; /* Cantos arredondados do grupo */
+  padding: 0 12px; /* Preenchimento horizontal */
+}
+
+.phone-input-group span {
+  font-size: 14px;
+  color: #333; /* Cor do texto "+55 |" */
+  margin-right: 4px; /* Espaçamento ajustado para o ícone */
+}
+
+.phone-input-group input {
+  flex-grow: 1; /* Faz o input preencher o espaço restante */
+  padding: 12px 0; /* Ajusta o padding vertical do input dentro do grupo */
+  background-color: transparent; /* Torna o input transparente dentro do grupo */
+  border: none;
+  outline: none;
+}
+
+/* Estilos para o ícone de seta para baixo no campo de celular */
+.arrow-down-icon {
+  width: 16px; /* Tamanho do ícone */
+  height: 16px;
+  fill: #333; /* Cor do ícone */
+  margin-right: 4px; /* Espaçamento entre o ícone e o texto "+55" */
+  /* Ajuste vertical para alinhar com o texto */
+  transform: translateY(1px);
+}
+
+
+/* Estilos para o botão de submissão */
+
+/* Estilos para o botão de submissão */
+button[type="submit"] {
+  width: 50%;
+  padding: 10px;
+  background-color: #C5C5C5;
+  border: none;
+  border-radius: 15px;
+  font-size: 14px;
+  /* Removendo o margin: auto para usar flexbox */
+  /* margin: 10px auto; */ 
+  cursor: pointer;
+  /* Adicionando display block para ter sua própria linha e poder ser centralizado por text-align: center do pai */
+  display: block; 
+  margin-top: 30px; /* Mantém o espaçamento superior */
+  margin-left: auto; /* Centraliza horizontalmente */
+  margin-right: auto; /* Centraliza horizontalmente */
+}
+
+/* Você também pode garantir que o form-card centralize seu conteúdo */
+.form-card {
+  /* ... (outros estilos) ... */
+  text-align: center; /* Garante que elementos inline/inline-block sejam centralizados,
+                         e que blocos com margin: auto sejam centralizados se o pai tiver largura definida */
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 640px) {
+  /* ... (outros estilos) ... */
+
+  button[type="submit"] { /* Note que mudei de .submit para button[type="submit"] para manter a seletividade */
+    width: 60%; /* Aumenta a largura do botão em telas menores */
+    font-size: 15px;
+    margin-top: 20px;
+  }
+}

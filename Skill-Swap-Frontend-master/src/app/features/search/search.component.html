@@ -1,0 +1,71 @@
+<!-- Container principal que organiza os painéis de filtro e resultados -->
+<div class="search-page-container">
+
+  <!-- Painel da Esquerda: Filtros e Navegação -->
+  <aside class="filters-panel">
+    <button class="back-button" (click)="goBack()">
+      <!-- Adicione um ícone de seta aqui se estiver usando uma biblioteca de ícones -->
+      <span>&#x276E;</span> Voltar
+    </button>
+
+    <h2 class="filters-title">Filtros</h2>
+
+    <nav class="filter-options">
+      <a href="#" class="filter-link">Popularidade</a>
+      <a href="#" class="filter-link">Comunidade</a>
+      <a href="#" class="filter-link active">Pessoas</a>
+      <a href="#" class="filter-link">Personalizado</a>
+      <a href="#" class="filter-link">Palavra-chave</a>
+    </nav>
+  </aside>
+
+  <!-- Painel da Direita: Barra de Busca e Resultados -->
+  <main class="results-panel">
+    <!-- Cabeçalho com a barra de busca e opções de visualização -->
+    <div class="results-header">
+      <div class="search-bar">
+        <!-- Ícone de busca -->
+        <span class="icon">&#x1F50D;</span>
+        <span class="search-label">Busca</span>
+        <input type="text" [value]="searchTerm" readonly>
+      </div>
+      <div class="view-options">
+        <!-- Ícones de visualização (lista/grade) -->
+        <span class="icon">&#x2630;</span>
+        <span class="icon">&#x25A6;</span>
+      </div>
+    </div>
+
+    <!-- Lista que conterá os cards dos usuários -->
+    <div class="results-list">
+      <!-- 
+        *ngFor vai iterar sobre o array 'searchResults' do seu .ts
+        e criar um 'user-card' para cada item.
+      -->
+      <div 
+        *ngFor="let user of searchResults" 
+        class="user-card" 
+        [class.highlight]="user.isTopRated"
+        (click)="selectUser(user.id)"
+        tabindex="0"
+        role="button">
+
+        <img [src]="user.avatarUrl" [alt]="'Avatar de ' + user.name" class="user-avatar">
+        
+        <div class="user-info">
+          <div class="user-name">
+            {{ user.name }}
+            <!-- A estrela só aparece se user.isTopRated for true -->
+            <span *ngIf="user.isTopRated" class="star-icon">&#x2B50;</span>
+          </div>
+          <span class="user-stats">Ajudou {{ user.helpedCount }} pessoas</span>
+          <!-- O 'pipe' | date formata a data para o padrão brasileiro -->
+          <span class="user-since">Desde {{ user.joinDate | date:'dd / MM / yyyy' }}</span>
+        </div>
+
+        <span class="details-arrow">&#x276F;</span>
+      </div>
+    </div>
+  </main>
+
+</div>

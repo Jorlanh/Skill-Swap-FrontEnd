@@ -1,0 +1,44 @@
+/* Estilo para o container do footer */
+.site-footer {
+  padding: 1rem 0;
+  /* Garante que o footer fique no final da coluna flex da sidebar */
+  margin-top: auto; 
+  width: 100%;
+}
+
+/* Organiza o conteúdo do footer */
+.footer-content {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem; /* 12px */
+  color: #64748b; /* --text-secondary */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Espaçamento entre as linhas */
+}
+
+/* Estilo para cada linha de texto no footer */
+.footer-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas pequenas */
+}
+
+/* Estilo dos links (Políticas de Privacidade, Termos de Uso) */
+.footer-row a {
+  color: #64748b; /* --text-secondary */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer-row a:hover {
+  color: #1e293b; /* --text-primary */
+  text-decoration: underline;
+}
+
+/* Estilo para o separador | */
+.separator {
+  color: #94a3b8;
+}

@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:host {
+  display: block;
+  background-color: #ffffff; /* Fundo branco para a sidebar */
+  padding: 1.5rem 1rem;
+  border-right: 1px solid #e2e8f0; /* Borda sutil à direita */
+  height: 100%; /* Garante que a sidebar ocupe toda a altura */
+  font-family: 'Inter', sans-serif;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Espaçamento entre os links */
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #475569; /* Cor do texto secundário */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  position: relative;
+}
+
+.nav-link:hover {
+  background-color: #f1f5f9; /* Um cinza bem claro no hover */
+  color: #1e293b;
+}
+
+/* Estilo aplicado automaticamente pelo 'routerLinkActive'
+  quando a rota do link está ativa.
+*/
+.nav-link.active {
+  background-color: #eef2ff; /* Fundo azul claro para o item ativo */
+  color: #3b82f6; /* Cor do texto azul */
+  font-weight: 600;
+}
+
+.nav-link .icon {
+  font-size: 1.3rem; /* Tamanho dos ícones */
+  width: 24px; /* Garante alinhamento */
+  text-align: center;
+}
+
+.nav-link .label {
+  flex-grow: 1; /* Faz o texto ocupar o espaço restante */
+}
+
+/* Badge de notificação (para Propostas, por exemplo) */
+.notification-badge {
+  background-color: #3b82f6;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto; /* Empurra o badge para a direita */
+}
+
+/* Ajusta o badge no item ativo para manter a cor */
+.nav-link.active .notification-badge {
+  background-color: #3b82f6;
+  color: white;
+}

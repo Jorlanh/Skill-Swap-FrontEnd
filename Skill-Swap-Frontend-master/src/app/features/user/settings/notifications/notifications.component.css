@@ -1,0 +1,91 @@
+/* Importando uma fonte para um visual mais limpo */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:host {
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+}
+
+/* Estilo para o container de todo o feed */
+.notifications-feed {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo para cada item individual na lista de notificações */
+.notification-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* 16px */
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f2f5; /* Linha divisória sutil */
+}
+
+/* Remove a linha do último item para um acabamento melhor */
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+
+/* --- Seção da Esquerda --- */
+.avatar-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.action-icon {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border: 2px solid white; /* Borda branca para separar do avatar */
+}
+
+/* Cores dos ícones baseadas no tipo de notificação (classe do container) */
+.notification-item.like .action-icon { background-color: #ef4444; color: white; }
+.notification-item.comment .action-icon { background-color: #3b82f6; color: white; }
+.notification-item.interest .action-icon { background-color: #f59e0b; color: white; }
+.notification-item.learning .action-icon { background-color: #8b5cf6; color: white; }
+
+
+/* --- Seção do Meio --- */
+.text-container {
+  flex-grow: 1; /* Ocupa o espaço disponível */
+}
+
+.text-container p {
+  margin: 0;
+  font-size: 1rem; /* 16px */
+  color: #64748b; /* Cinza secundário */
+  line-height: 1.5;
+}
+
+.text-container p strong {
+  font-weight: 600;
+  color: #1e293b; /* Preto suave */
+}
+
+/* --- Seção da Direita --- */
+.thumbnail-container {
+  flex-shrink: 0;
+}
+
+.thumbnail {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+}

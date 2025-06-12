@@ -1,0 +1,46 @@
+<!-- Container principal do feed -->
+<div class="notifications-feed">
+  
+  <!-- 
+    A diretiva *ngFor itera sobre a lista de notificações.
+    Todo o HTML para um item de notificação está dentro deste 'div'.
+  -->
+  <div *ngFor="let notification of notifications" class="notification-item" [ngClass]="notification.type">
+    
+    <!-- Seção da Esquerda: Avatar e Ícone de Ação -->
+    <div class="avatar-container">
+      <img [src]="notification.user.avatarUrl" [alt]="'Avatar de ' + notification.user.name" class="avatar">
+      <!-- O ícone muda de acordo com o tipo da notificação -->
+      <div class="action-icon">
+        <span *ngIf="notification.type === 'like'">&#x2764;&#xFE0F;</span> <!-- Coração -->
+        <span *ngIf="notification.type === 'comment'">&#x1F4AC;</span> <!-- Balão de fala -->
+        <span *ngIf="notification.type === 'interest'">&#x2B50;</span> <!-- Estrela -->
+        <span *ngIf="notification.type === 'learning'">&#x1F9D1;&#x200D;&#x1F393;</span> <!-- Estudante -->
+      </div>
+    </div>
+  
+    <!-- Seção do Meio: O texto da notificação -->
+    <div class="text-container">
+      <p>
+        <strong>{{ notification.user.name }}</strong>
+        <!-- Constrói o texto para múltiplos usuários -->
+        <ng-container *ngIf="notification.additionalUsers && notification.additionalUsers.length > 0">
+          e <strong>{{ notification.additionalUsers[0].name }}</strong>
+        </ng-container>
+        
+        {{ notification.actionText }}
+        
+        <!-- Mostra o dono do conteúdo ou o nome do conteúdo -->
+        <strong *ngIf="notification.targetOwner">{{ notification.targetOwner }}</strong>
+        <strong *ngIf="notification.targetContent">{{ notification.targetContent }}</strong>
+      </p>
+    </div>
+  
+    <!-- Seção da Direita: Thumbnail do Conteúdo -->
+    <div class="thumbnail-container" *ngIf="notification.contentThumbnailUrl">
+      <img [src]="notification.contentThumbnailUrl" alt="Thumbnail do conteúdo" class="thumbnail">
+    </div>
+  
+  </div>
+
+</div>

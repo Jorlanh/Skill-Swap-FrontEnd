@@ -1,0 +1,79 @@
+<!-- Container principal com layout de duas colunas -->
+<div class="page-container">
+
+  <!-- Sidebar (Coluna da Esquerda) para a lista de solicitações -->
+  <aside class="sidebar">
+    <button class="back-button" (click)="goBack()">
+      <span>&larr;</span> Voltar
+    </button>
+    <div class="sidebar-header">
+      <span class="header-icon">&#x1F4DD;</span>
+      <h2>Solicitações</h2>
+      <span class="badge">{{ proposals.length }}</span>
+    </div>
+
+    <!-- Lista de propostas -->
+    <ul class="proposals-list">
+      <li *ngFor="let proposal of proposals" 
+          [class.active]="proposal.selected" 
+          (click)="selectProposal(proposal)">
+        
+        <img [src]="proposal.avatar" [alt]="'Avatar de ' + proposal.name" class="avatar">
+        
+        <div class="proposal-info">
+          <strong>{{ proposal.name }}</strong>
+          <p>{{ proposal.message.text | slice:0:30 }}...</p>
+        </div>
+
+        <div class="proposal-status-icons">
+          <ng-container [ngSwitch]="proposal.status">
+            <span *ngSwitchCase="'accepted'" class="icon-status accepted">&#x2714;</span>
+            <span *ngSwitchCase="'rejected'" class="icon-status rejected">&#x2718;</span>
+            <span *ngSwitchCase="'blocked'" class="icon-status blocked">&#x2718;</span>
+          </ng-container>
+        </div>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- Conteúdo Principal (Coluna da Direita) -->
+  <main class="main-content" *ngIf="selectedProposal">
+    <!-- NOVO: Container para o conteúdo que pode rolar -->
+    <div class="content-wrapper">
+      <!-- Perfil do usuário da proposta selecionada -->
+      <div class="profile-header">
+        <img [src]="selectedProposal.avatar" [alt]="'Avatar de ' + selectedProposal.name" class="profile-avatar">
+        <div class="profile-name">
+          <h2>{{ selectedProposal.name }}</h2>
+          <span>{{ selectedProposal.username }}</span>
+        </div>
+        <p class="join-date">Na comunidade desde {{ selectedProposal.joinDate | date:'dd / MM / yy' }}</p>
+      </div>
+  
+      <!-- Caixa de informações da proposta -->
+      <div class="proposal-details">
+        <p>
+          <strong>{{ selectedProposal.name }}</strong> deseja, junto com você, trocar conhecimentos.
+          <br>
+          Com interesse em <strong>{{ selectedProposal.interest }}</strong>, quer poder ajudá-lo com <strong>{{ selectedProposal.offering }}</strong>.
+        </p>
+      </div>
+  
+      <!-- Mensagem enviada pelo usuário -->
+      <div class="message-container">
+        <div class="message-date-chip">{{ selectedProposal.message.date }}</div>
+        <div class="message-box">
+          <p>{{ selectedProposal.message.text }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra de Ações (anteriormente footer, agora uma div separada) -->
+    <div class="action-buttons">
+      <button class="accept" (click)="acceptProposal(selectedProposal)">&#x2714; Aceitar</button>
+      <button class="reject" (click)="rejectProposal(selectedProposal)">&#x2718; Recusar</button>
+      <button class="block" (click)="blockProposal(selectedProposal)">&#x26D4; Bloquear</button>
+    </div>
+  </main>
+
+</div>

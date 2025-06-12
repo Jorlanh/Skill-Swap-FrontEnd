@@ -1,0 +1,99 @@
+/* Importando a fonte - coloque no seu styles.css global se preferir */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:host {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* O fundo que cobre a tela inteira */
+.modal-overlay {
+  position: fixed; /* Fica fixo na tela, por cima de tudo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Fundo preto com 40% de opacidade */
+  backdrop-filter: blur(4px); /* Desfoca o conteúdo que está atrás */
+  
+  /* Centraliza o modal no meio da tela */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Garante que fique na frente de outros elementos */
+}
+
+/* O "cartão" branco do modal */
+.modal-content {
+  background-color: #ffffff;
+  padding: 35px;
+  border-radius: 24px; /* Cantos bem arredondados */
+  box-shadow: 0 0 0 5px rgba(52, 152, 219, 0.2); /* "Aura" azul clara */
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 700; /* Bold */
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+}
+
+.description {
+  font-size: 15px;
+  color: #7f8c8d;
+  margin-bottom: 25px;
+}
+
+.prompt {
+  font-size: 14px;
+  font-weight: 500;
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+.code-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.code-inputs input {
+  width: 45px;
+  height: 50px;
+  border-radius: 12px;
+  border: 1px solid #dfe6e9;
+  background-color: #f5f6fa;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.code-inputs input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+.verify-button {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  background-color: #3498db; /* Azul do design */
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.verify-button:hover {
+  background-color: #2980b9; /* Um azul um pouco mais escuro */
+}

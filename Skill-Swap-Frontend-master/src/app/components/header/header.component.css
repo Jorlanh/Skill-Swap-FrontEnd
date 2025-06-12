@@ -1,0 +1,47 @@
+/* Garante que o header ocupe toda a largura e tenha uma borda embaixo */
+header {
+  width: 100%;
+  padding: 1rem 2rem; /* Espaçamento interno */
+  border-bottom: 1px solid #e2e8f0; /* Linha de separação */
+  box-sizing: border-box; /* Evita problemas com o padding */
+}
+
+/* A mágica do layout acontece aqui! */
+nav {
+  display: flex; /* Coloca os itens lado a lado */
+  justify-content: space-between; /* Espaça os itens para preencher o espaço */
+  align-items: center; /* Alinha os itens verticalmente no centro */
+  gap: 1.5rem; /* Espaçamento entre os itens */
+}
+
+/* AQUI ESTÁ A MUDANÇA! 
+  Usando a classe .Logo com as dimensões corretas.
+*/
+.Logo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Estilo básico para o campo de busca */
+input[type="search"] {
+  background-color: #C5C5C5; /* Nova cor de fundo */
+  padding: 0.7rem;
+  border: 1px solid #ccc; /* Borda atual */
+  border-radius: 10px;
+  flex-grow: 1;
+  max-width: 3500px;
+  transform: translateY(-20px); /* Ajuste o valor -20px como quiser */
+}
+
+/* Garante que a cor dos ícones SVG seja a cor do texto atual */
+svg {
+  color: #333; /* Cor escura para os ícones */
+  transition: color 0.2s; /* Efeito suave na cor */
+
+   transform: translateY(-20px); /* Ajuste o valor -20px como quiser */
+}
+
+svg:hover {
+  color: #007bff; /* Cor azul ao passar o mouse */
+}

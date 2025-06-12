@@ -31,9 +31,6 @@
           },
           "configurations": {
             "production": {
-              "optimization": {
-                "fonts": false
-              },
               "budgets": [
                 {
                   "type": "initial",
@@ -96,7 +93,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/skill-swap-frontend/server",
-            "main": "src/main.server.ts",
+            "main": "src/server.ts",
             "tsConfig": "tsconfig.server.json"
           },
           "configurations": {

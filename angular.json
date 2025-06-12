@@ -101,10 +101,7 @@
           },
           "configurations": {
             "production": {
-              "outputHashing": "media",
-               "optimization": {
-                "fonts": false
-              }
+              "outputHashing": "media"
             },
             "development": {
               "optimization": false,

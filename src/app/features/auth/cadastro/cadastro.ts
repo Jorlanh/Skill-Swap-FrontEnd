@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '@environments/environment';
+// CAMINHO CORRIGIDO
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-cadastro',
@@ -25,12 +26,11 @@ export class CadastroComponent {
       return;
     }
 
-    // URL foi atualizada para usar a variável de ambiente.
     this.http.post(`${environment.apiUrl}/auth/register`, this.user)
       .subscribe(
         response => {
           console.log('Cadastro bem-sucedido', response);
-          this.router.navigate(['/login']); // Redireciona para a página de login após o sucesso
+          this.router.navigate(['/login']);
         },
         error => {
           console.error('Erro no cadastro', error);

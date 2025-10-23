@@ -1,39 +1,65 @@
 <div class="centralizar">
-<div class="cadastro-container">
-  <h2>Criar conta</h2>
-  <form>
+  <div class="cadastro-container">
+    <h2>Criar conta</h2>
+    <!-- 1. Adicione (ngSubmit)="onSubmit()" -->
+    <form (ngSubmit)="onSubmit()">
 
-       <div class="form-group">
-      <label for="username">Nome completo</label>
-      <input type="text" id="username" name="username" placeholder="seu_usuario">
-    <div class="form-group">
+      <div class="form-group">
+        <label for="name">Nome completo</label>
+        <!-- 2. Corrija ngModel para registerData.name e adicione 'name' attribute -->
+        <input type="text" id="name" name="name" placeholder="Seu nome completo" [(ngModel)]="registerData.name" required>
+      </div>
 
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="seunome@exemplo.com">
-    </div>
-    <div class="form-group">
-      <label for="username">Usuário</label> 
-        <input type="text" id="username" name="username" placeholder="seu_usuario">
-    </div>
-    <div class="form-group">    
-        <label for="Data de Nascimento">Data de nacimento</label>
-        <input type="date" id="data-nascimento" name="data-nascimento">
-    </div>
-    <div class="form-group">
-        <label for="Celular">Celular</label>
-        <input type="tel" id="celular" name="celular" placeholder="(xx) xxxxx-xxxx">
-    </div>
-    <div class="form-group">
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
-    </div>
- 
-      <label for="password">Insira a senha novamente</label>
-      <input type="password" id="password" name="password" placeholder="">
-    </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <!-- 3. Corrija ngModel para registerData.email -->
+        <input type="email" id="email" name="email" placeholder="seunome@exemplo.com" [(ngModel)]="registerData.email" required>
+      </div>
 
-  <div class="form-group">
-    <button type="submit">Criar</button>
+      <div class="form-group">
+        <label for="username">Usuário</label>
+        <!-- 4. Corrija ngModel para registerData.username -->
+        <input type="text" id="username" name="username" placeholder="seu_usuario" [(ngModel)]="registerData.username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="birthDate">Data de nacimento</label> <!-- Corrigido 'nacimento' para 'nascimento' -->
+        <!-- 5. Corrija ngModel para registerData.birthDate e 'name' attribute -->
+        <input type="date" id="birthDate" name="birthDate" [(ngModel)]="registerData.birthDate">
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber">Celular</label>
+        <!-- 6. Corrija ngModel para registerData.phoneNumber e 'name' attribute -->
+        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="(xx) xxxxx-xxxx" [(ngModel)]="registerData.phoneNumber" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <!-- 7. Corrija ngModel para registerData.password e 'name' attribute -->
+        <input type="password" id="password" name="password" placeholder="Digite sua senha" [(ngModel)]="registerData.password" required>
+      </div>
+
+      <div class="form-group"> <!-- Fechamento da div anterior estava faltando -->
+        <label for="confirmPassword">Insira a senha novamente</label>
+        <!-- 8. Corrija ngModel para registerData.confirmPassword, 'id' e 'name' attributes -->
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme sua senha" [(ngModel)]="registerData.confirmPassword" required>
+      </div>
+
+      <!-- 9. Adicione divs para exibir mensagens -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn">Criar</button> <!-- Adicionado class="btn" que estava no seu código original -->
+      </div>
+
+      <p>Já tem uma conta? <a routerLink="/login">Faça Login</a></p> <!-- Use routerLink -->
+
+    </form>
+  </div>
 </div>
-

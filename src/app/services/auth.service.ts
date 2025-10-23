@@ -1,77 +1,78 @@
-// src/app/services/auth.service.ts
-
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; // Importe HttpClient
-import { Observable, tap, BehaviorSubject } from 'rxjs'; // Importe Observable, tap e BehaviorSubject
-import { Router } from '@angular/router'; // Importe Router para navegação
+import { HttpClient } from '@angular/common/http';
+import { Observable, tap, BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
+import { environment } from '../environments/environment'; // 1. Importe o environment
 
-// Defina as interfaces para Request e Response DTOs
-// Você pode colocar estas interfaces em um arquivo separado (ex: src/app/interfaces/auth.interface.ts)
-// para reutilização, mas para fins de clareza, vamos deixá-las aqui por enquanto.
-
-interface LoginRequest {
-  usernameOrEmail: string;
-  password: string;
-  twoFactorCode?: string; // Opcional para 2FA
-  twoFactorMethod?: string; // Opcional para 2FA
-}
-
-interface LoginResponse {
+// Interfaces
+export interface AuthResponse {
   token: string;
   message: string;
 }
-
-interface ErrorResponse { // Se o backend retornar um objeto de erro
-  message: string;
+export interface LoginData {
+  usernameOrEmail: string;
+  password?: string;
 }
+
+// Adicione esta interface para os dados de registro
+export interface RegisterData {
+  name?: string;
+  email?: string;
+  username?: string;
+  birthDate?: string; // Enviaremos como string no formato YYYY-MM-DD
+  phoneNumber?: string;
+  password?: string;
+  confirmPassword?: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // A URL base da sua API de login.
-  // ATENÇÃO: Substitua 'http://localhost:8080' pela URL real do seu backend Java!
-  // A porta padrão do Spring Boot é 8080.
-  private apiUrl = 'http://localhost:8080/api/login';
+  // Ajuste a apiUrl para a base da API
+  private apiUrl = environment.apiUrl;
+  private isAuthenticated = new BehaviorSubject<boolean>(this.hasToken());
 
-  // BehaviorSubject para gerenciar o estado de login (útil para outros componentes saberem se o user está logado)
-  private _isLoggedIn = new BehaviorSubject<boolean>(this.hasToken());
-  isLoggedIn$ = this._isLoggedIn.asObservable(); // Observable público para observar o estado de login
+  constructor(
+    private http: HttpClient,
+    private router: Router
+    ) { }
 
-  constructor(private http: HttpClient, private router: Router) { } // Injete HttpClient e Router
-
-  // Método para fazer a requisição de login
-  login(credentials: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(this.apiUrl, credentials)
-      .pipe(
-        tap(response => {
-          // Se o login for bem-sucedido, armazena o token
-          if (response && response.token) {
-            localStorage.setItem('jwt_token', response.token); // Armazena o token no localStorage
-            this._isLoggedIn.next(true); // Atualiza o estado de login
-            console.log('Login bem-sucedido! Token JWT armazenado.');
-          }
-        })
-        // Aqui você poderia adicionar catchError para tratar erros,
-        // mas vamos tratar no componente por enquanto para simplicidade
-      );
+  login(loginData: LoginData): Observable<AuthResponse> {
+    // Usa a apiUrl base + /api/login
+    return this.http.post<AuthResponse>(`${this.apiUrl}/api/login`, loginData).pipe(
+      tap(response => {
+        if (response && response.token) {
+          localStorage.setItem('authToken', response.token);
+          this.isAuthenticated.next(true);
+        }
+      })
+    );
   }
 
-  // Método para verificar se o usuário está logado (se tem um token)
-  hasToken(): boolean {
-    return !!localStorage.getItem('jwt_token'); // Retorna true se o token existir
+  // ============== ADICIONADO O MÉTODO REGISTER ==============
+  register(registerData: RegisterData): Observable<any> {
+    // Usa a apiUrl base + /api/register
+    return this.http.post(`${this.apiUrl}/api/register`, registerData);
+  }
+  // ==========================================================
+
+  logout() {
+    localStorage.removeItem('authToken');
+    this.isAuthenticated.next(false);
+    this.router.navigate(['/login']);
   }
 
-  // Método para pegar o token
   getToken(): string | null {
-    return localStorage.getItem('jwt_token');
+    return localStorage.getItem('authToken');
   }
 
-  // Método para fazer logout
-  logout(): void {
-    localStorage.removeItem('jwt_token'); // Remove o token
-    this._isLoggedIn.next(false); // Atualiza o estado de login
-    this.router.navigate(['/login']); // Redireciona para a página de login
-    console.log('Logout realizado. Token JWT removido.');
+  isLoggedIn(): Observable<boolean> {
+    return this.isAuthenticated.asObservable();
+  }
+
+  private hasToken(): boolean {
+    return !!localStorage.getItem('authToken');
   }
 }

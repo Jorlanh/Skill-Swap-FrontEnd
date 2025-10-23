@@ -3,5 +3,6 @@
 // enquanto mantém a URL de produção no outro arquivo.
 export const environment = {
   production: false,
-  apiUrl: 'https://skillswap-backend-r7g8.onrender.com'
+  // Configura a URL para o backend local
+  apiUrl: 'http://localhost:8080'
 };
